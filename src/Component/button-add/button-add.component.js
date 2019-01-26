@@ -14,6 +14,7 @@ class ButtonAddComponent extends Component {
       idAdd.style.display = "block";
       nameAdd.style.display = "none";
     }
+    this.props.onGetUsersList();
   };
   render() {
     return (
@@ -46,6 +47,11 @@ const mapDispatchToProps = dispatch => {
       dispatch({
         type: "ADD_SCORE",
         status
+      });
+    },
+    onGetUsersList: () => {
+      dispatch({
+        type: "GET_USERS_LIST"
       });
     }
   };

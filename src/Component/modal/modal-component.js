@@ -12,6 +12,7 @@ class ModalComponent extends Component {
   }
   //handle when change the input
   handleOnChange = e => {
+    console.log(this.props.list);
     if (e.target.name == "name") {
       this.setState({
         [e.target.name]: e.target.value

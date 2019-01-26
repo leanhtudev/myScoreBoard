@@ -24,23 +24,25 @@ let FindByID = (arr, id) => {
   }
   return result;
 };
+let latestList = [...initialState];
 const list = (state = initialState, action) => {
   switch (action.type) {
     case "GET_USERS_LIST":
+      state = [...latestList];
       return [...state];
     case "ADD_NEXT_USER":
-      state = [...state, action.user];
-      localStorage.setItem("UsersList", JSON.stringify(state));
-
+      latestList = [...latestList, action.user];
+      localStorage.setItem("UsersList", JSON.stringify(latestList));
+      state = [...latestList];
       return [...state];
     case "UPDATE_SCORE":
-      state = [...state];
       for (let i in state) {
-        if (state[i].id === action.newObj.id) {
-          state[i].lastScore = parseInt(action.newObj.lastScore);
-          state[i].totalScore += state[i].lastScore;
+        if (latestList[i].id === action.newObj.id) {
+          latestList[i].lastScore = parseInt(action.newObj.lastScore);
+          latestList[i].totalScore += state[i].lastScore;
         }
       }
+      state = [...latestList];
       return [...state];
     case "SEARCH":
       state = [...state];
